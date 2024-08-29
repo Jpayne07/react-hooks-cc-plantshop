@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 
-function PlantCard({plantItem}) {
+function PlantCard({plantItem, plantState, setPlantState}) {
   //state initialization, checking instock, new plant price, boolean to hide price form, boolean to hide content client side before refresh
   const [inStock, setStock] = useState(true)
   const [newPrice, setPrice] = useState(plantItem.price)
@@ -8,17 +8,15 @@ function PlantCard({plantItem}) {
   const [deleted, setDelete] = useState(false)
   const changePrice = (e)=>{
     e.preventDefault()
-    setPrice(e.target.name.value)
-    
-  }
-    useEffect(()=>{
+
     fetch(`http://localhost:6001/plants/${plantItem.id}`,{
       method:'PATCH',
       headers: {
       "Content-Type": "application/json"},
       body: JSON.stringify({price:parseInt(newPrice)})
     })
-  },[newPrice, plantItem.id]) //using this dependency so this effect only fires when the plantItem.id, or the newPrice is updated
+    
+  }//using this dependency so this effect only fires when the plantItem.id, or the newPrice is updated
     
   //function to show price form on price button click
   const updatingPrice = ()=>{
@@ -32,7 +30,9 @@ function PlantCard({plantItem}) {
         headers: {
         "Content-Type": "application/json"},
       })
-      
+      setPlantState(plantState.filter(plant =>{
+        return plant.id !==plantItem.id
+      }))
   }
   return (
     deleted?null://ternary to handle the client side remove of deletePlant
@@ -45,7 +45,7 @@ function PlantCard({plantItem}) {
       {hidePrice ?
       <form action="" method="get" onSubmit={e=>changePrice(e)}>
           <label>Change Price: </label>
-          <input type="text" name="name" id="name" placeholder="Enter Price"/>
+          <input type="text" placeholder="Enter Price" value ={newPrice} onChange={(e)=>setPrice(e.target.value)}/>
           <button>Submit</button>
       </form>:null}
       <br></br>

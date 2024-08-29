@@ -1,6 +1,13 @@
 import React from "react";
 //one prop for the search state
-function Search({searchPlants}) {
+function Search({setSearchPlantState}) {
+
+  //passing to lowest controlled component
+  const searchPlants = (e)=> {
+    const searchValue = e.target.value
+    setSearchPlantState(searchValue)
+   }
+
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
