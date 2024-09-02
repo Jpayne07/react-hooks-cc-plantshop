@@ -22,13 +22,13 @@ function PlantPage() {
   const filterablePlants = plantState.filter(plant=>{
     return plant.name.toLowerCase().includes(searchPlantState.toLowerCase())
   })
-
+console.log(plantState)
   
   //rendered content below with the required props
   return (
     <main>
       <NewPlantForm API = {API} setPlantState={setPlantState} plantState={plantState}/>
-      <Search  setSearchPlantState ={setSearchPlantState}/>
+      <Search  setSearchPlantState ={setSearchPlantState} searchPlantState = {searchPlantState}/>
       <PlantList plantState={filterablePlants} setPlantState={setPlantState} />
     </main>
   );

@@ -8,7 +8,7 @@ function PlantCard({plantItem, plantState, setPlantState}) {
   const [deleted, setDelete] = useState(false)
   const changePrice = (e)=>{
     e.preventDefault()
-
+    //patch fires on event now and not useEffect
     fetch(`http://localhost:6001/plants/${plantItem.id}`,{
       method:'PATCH',
       headers: {
@@ -16,7 +16,7 @@ function PlantCard({plantItem, plantState, setPlantState}) {
       body: JSON.stringify({price:parseInt(newPrice)})
     })
     
-  }//using this dependency so this effect only fires when the plantItem.id, or the newPrice is updated
+  }
     
   //function to show price form on price button click
   const updatingPrice = ()=>{
@@ -30,7 +30,7 @@ function PlantCard({plantItem, plantState, setPlantState}) {
         headers: {
         "Content-Type": "application/json"},
       })
-      setPlantState(plantState.filter(plant =>{
+      setPlantState(plantState.filter(plant =>{//this updates plant state based on the delete
         return plant.id !==plantItem.id
       }))
   }

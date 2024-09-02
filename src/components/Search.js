@@ -1,6 +1,6 @@
 import React from "react";
 //one prop for the search state
-function Search({setSearchPlantState}) {
+function Search({setSearchPlantState, searchPlantState}) {
 
   //passing to lowest controlled component
   const searchPlants = (e)=> {
@@ -16,6 +16,7 @@ function Search({setSearchPlantState}) {
         id="search"
         placeholder="Type a name to search..."
         onChange={searchPlants}
+        value = {searchPlantState}
       />
     </div>
   );

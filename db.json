@@ -1,22 +1,10 @@
 {
   "plants": [
     {
-      "id": 1,
-      "name": "Aloe",
-      "image": "./images/aloe.jpg",
-      "price": 17
-    },
-    {
       "id": 2,
       "name": "ZZ Plant",
       "image": "./images/zz-plant.jpg",
       "price": 25
-    },
-    {
-      "id": 3,
-      "name": "Pilea peperomioides",
-      "image": "./images/pilea.jpg",
-      "price": 22
     },
     {
       "id": 4,

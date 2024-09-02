@@ -16,13 +16,21 @@ function NewPlantForm({ API, setPlantState, plantState}) {
       image: newPlantImage||"no plant image entered",
       price: newPriceName||"no plant price entered"
     }
-    setPlantState([...plantState,newPlant])
+    // console.log(newPlant)
+    
     //id handled by post
     fetch(API, {
       method:'POST',
       headers: {
       "Content-Type": "application/json"},
       body: JSON.stringify(newPlant)
+    })
+
+    .then(r=>r.json())
+    .then(data=>{
+      console.log(data)
+      setPlantState([...plantState,data])
+      console.log(plantState)
     })
   }
   
