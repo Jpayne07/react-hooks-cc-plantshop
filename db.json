@@ -1,18 +1,6 @@
 {
   "plants": [
     {
-      "id": 1,
-      "name": "Aloe",
-      "image": "./images/aloe.jpg",
-      "price": 19
-    },
-    {
-      "id": 3,
-      "name": "Pilea peperomioides",
-      "image": "./images/pilea.jpg",
-      "price": 32
-    },
-    {
       "id": 4,
       "name": "Pothos",
       "image": "./images/pothos.jpg",
@@ -22,7 +10,7 @@
       "id": 5,
       "name": "Jade",
       "image": "./images/jade.jpg",
-      "price": 10.37
+      "price": 1
     },
     {
       "id": 6,
@@ -34,7 +22,7 @@
       "id": 7,
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
-      "price": 45
+      "price": 39
     }
   ]
 }

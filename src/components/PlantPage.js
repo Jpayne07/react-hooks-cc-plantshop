@@ -16,7 +16,10 @@ function PlantPage() {
   useEffect(()=>{
     fetch(API)
     .then(r=>r.json())
-    .then(data=>setPlantState(data))
+    .then(data=>{
+      setPlantState(data)
+      
+    })
   },[])
 
 
@@ -27,7 +30,7 @@ function PlantPage() {
         headers: {
         "Content-Type": "application/json"},
       })
-      .then(setPlantState(plantState.filter(plant =>{//this updates plant state based on the delete
+      .then(()=>setPlantState(plantState.filter(plant =>{//this updates plant state based on the delete
         return plant.id !==plantId
       }))
       

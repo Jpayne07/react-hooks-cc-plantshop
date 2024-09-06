@@ -5,7 +5,14 @@ function PlantList({filteredPlants, setPlantState, handleDelete, updatingPrice, 
 
   //mapping the plant state array to a variable
   const plantList = filteredPlants.map(plant=>{
-    return <PlantCard plantItem = {plant} key ={plant.id} filteredPlants={filteredPlants} setPlantState={setPlantState} handleDelete = {handleDelete} updatingPrice = {updatingPrice} hidePrice={hidePrice}/>
+    return <PlantCard plantItem = {plant} 
+    key ={plant.id} 
+    filteredPlants={filteredPlants} 
+    setPlantState={setPlantState} 
+    handleDelete = {handleDelete} 
+    updatingPrice = {updatingPrice} 
+    hidePrice={hidePrice}
+    />
   })
   return (
     <ul className="cards">{plantList}</ul>

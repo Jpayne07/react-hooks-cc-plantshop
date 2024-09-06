@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 
-function PlantCard({plantItem, handleDelete, updatingPrice, hidePrice}) {
+function PlantCard({plantItem, handleDelete, updatingPrice, setPlantState}) {
   //state initialization, checking instock, new plant price, boolean to hide price form, boolean to hide content client side before refresh
   const [inStock, setStock] = useState(true)
   const [newPrice, setPrice] = useState(plantItem.price)
@@ -16,7 +16,17 @@ function PlantCard({plantItem, handleDelete, updatingPrice, hidePrice}) {
       body: JSON.stringify({price:parseInt(newPrice)})
     })
     .then(r=>r.json())
-    .then(()=>setSubmitPrice(newPrice))
+    .then((updatedPlant)=>{
+      setSubmitPrice(newPrice)
+
+      setPlantState((prevPlantState) =>
+        prevPlantState.map((plant) =>
+          plant.id === updatedPlant.id
+            ? { ...plant, price: updatedPlant.price }
+            : plant
+        )
+      );
+    })
   }
     
  
@@ -30,7 +40,7 @@ function PlantCard({plantItem, handleDelete, updatingPrice, hidePrice}) {
       <button onClick={updatingPrice}>Update Price</button>
 
   
-      <form onSubmit={e=>changePrice(e)}>
+      <form onSubmit={changePrice}>
           <label>Change Price: </label>
           <input type="text" placeholder="Enter Price" value ={newPrice} onChange={(e)=>setPrice(e.target.value)}/>
           <button>Submit</button>
